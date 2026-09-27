@@ -195,18 +195,20 @@ rm -rf "$repo" "$repo2" "$repo4" "$repo5" "$repo6" "$repo7"
 # mktemp -d, so this repository's own path is distinctive per run — a
 # hardcoded "repo: ..." string cannot pass this the way it could pass against
 # a fixed fixture path.
+# Disable memory-pointer creation here: its first-time notice precedes the
+# verb output and tests a separate side effect, not this header contract.
 repoV="$(sandbox)"; cp shim/run "$repoV/.floppy/run"
 mkdir -p "$repoV/.agent-memory"
 printf '# Index\n' > "$repoV/.agent-memory/MEMORY.md"
 
 for verb in lint status check guard; do
-  firstline="$(cd "$repoV" && AI_FLOPPY_HOME="$ROOT" bash .floppy/run "$verb" 2>&1 | head -1)"
+  firstline="$(cd "$repoV" && FLOPPY_AUTOLINK=0 AI_FLOPPY_HOME="$ROOT" bash .floppy/run "$verb" 2>&1 | head -1)"
   assert_eq "$verb: first line names the resolved repository" "repo: $repoV" "$firstline"
 done
 
 # commit too, even though it fails immediately for lack of -m/files: the
 # naming is printed by the shim before wrap-commit.sh even starts.
-firstline_commit="$(cd "$repoV" && AI_FLOPPY_HOME="$ROOT" bash .floppy/run commit 2>&1 | head -1)"
+firstline_commit="$(cd "$repoV" && FLOPPY_AUTOLINK=0 AI_FLOPPY_HOME="$ROOT" bash .floppy/run commit 2>&1 | head -1)"
 assert_eq "commit: first line names the resolved repository" "repo: $repoV" "$firstline_commit"
 
 rm -rf "$repoV"

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repository is
 
-`floppy` is a **plugin** for Claude Code and Cursor — bash scripts plus prose
+`floppy` is a **plugin** for Claude Code, Cursor, and Codex CLI — bash scripts plus prose
 skills. There is no build step, no package manager, no compiled artifact. The
 deliverable is what git tracks.
 

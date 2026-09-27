@@ -6,7 +6,7 @@
 
 *[Русская версия](README.ru.md)*
 
-floppy is a plugin for Claude Code and Cursor. It gives a coding agent two
+floppy is a plugin for Claude Code, Cursor, and Codex CLI. It gives a coding agent two
 things: a memory that stays in your repository, and two procedures that use
 that memory.
 
@@ -28,6 +28,12 @@ claude plugin install floppy@floppy
 Cursor, a local checkout, and what to do when an update copies nothing:
 [Install and init](docs/guide/install.md).
 
+For Codex CLI, run `codex plugin marketplace add spscream/ai-floppy`, then
+`codex plugin add floppy@floppy`. Start a new session and explicitly request
+`$init`; later request `$start`, `$workstatus`, and `$wrap`. See
+[Install and init](docs/guide/install.md) for the first-use sequence and
+lifecycle limits.
+
 ## Then
 
 Run `init` once in each repository. It writes `.floppy/config`, creates the
@@ -40,7 +46,7 @@ Six skills: `init`, `agent-memory`, `start`, `workstatus`, `wrap`,
 
 ## Documentation
 
-- [Install and init](docs/guide/install.md) — both harnesses, and the two
+- [Install and init](docs/guide/install.md) — all three harnesses, and the two
   stale copies that cause no error message
 - [Config reference](docs/guide/config.md) — every `.floppy/config` key, the
   checkout layout, memory in a separate repository, `quota.lock`

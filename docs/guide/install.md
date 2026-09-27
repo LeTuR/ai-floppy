@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- **Claude Code or Cursor.** floppy is a plugin. It is not a separate program.
+- **Claude Code, Cursor, or Codex CLI.** floppy is a plugin. It is not a separate program.
 - **`bash`, `git`, and a git repository.** Each command finds its paths from
   the repository root. Outside a repository, each command stops with an error.
   It does not guess.
@@ -28,6 +28,30 @@ spscream/ai-floppy`, then `/plugin install floppy@floppy`.
 
 The name `floppy` occurs two times in the second command. The marketplace has
 this name. The plugin inside the marketplace has the same name.
+
+### Codex CLI
+
+```sh
+codex plugin marketplace add spscream/ai-floppy
+codex plugin add floppy@floppy
+```
+
+Start a **new Codex session** in the project you want to initialize. Ask it to
+use `$init` and answer its two questions (memory directory and language). The
+default answers are `.agent-memory` and `en`. Review and commit the files it
+creates in your project. In later fresh sessions, ask Codex to use `$start`
+before work, `$workstatus` when you need a live report, and `$wrap` when the
+session ends. `$agent-memory` supplies their memory rules. The skill locates
+its installed `SKILL.md` through Codex's skill catalog; the dispatcher is at
+`scripts/run` two directories above that file.
+
+These are explicit skill requests. The package does not install lifecycle
+hooks, so Codex does not run `start` or `wrap` automatically. The scripts need
+a git repository and Bash, as stated under Requirements.
+
+To test a local checkout instead of the published repository, replace the
+marketplace source in the first command with its absolute path. Use an isolated
+`CODEX_HOME` if you want to leave existing Codex plugins and settings alone.
 
 ### Cursor, from the repository
 
@@ -156,4 +180,3 @@ Run `init` one time in each repository.
 
 `init` is idempotent. If the repository is already prepared, a second run
 changes nothing.
-

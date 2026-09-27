@@ -29,8 +29,8 @@ Several projects can be open in the same harness at once (Cursor especially),
 and the shell a skill runs in is not necessarily the one the human was
 talking about. One line naming it is enough.
 
-The script is in the plugin, which is where this skill itself came from. The
-harness states this skill's own base directory when it loads it — `Base
+The script is in the plugin, which is where this skill itself came from.
+Claude Code states this skill's base directory when it loads it — `Base
 directory for this skill: <plugin>/skills/init` — so the plugin root is two
 directories above that, and the script is `<plugin>/scripts/init.sh`. Write
 that absolute path:
@@ -47,6 +47,9 @@ the path over in-band at skill load, so the root is two directories up from a
 string that is already on screen — no cache glob, no `sort -V`, no Cursor SHA
 ordering to get right. The copy had been wrong once before it was removed
 (four branches of six, for as long as it had existed; found 2026-09-09).
+
+In Codex, use the loaded `init` skill's path in the available-skills
+catalog; its `SKILL.md` is two directories below the plugin root.
 
 If the base directory is genuinely not stated — a harness that does not print
 it — do not guess a cache path: say so and stop. `$CLAUDE_PLUGIN_ROOT` and

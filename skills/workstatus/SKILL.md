@@ -17,11 +17,14 @@ kind of guess this report exists to rule out.
 
 ## What to run
 
-The dispatcher ships with the plugin; this repository holds no copy of it. The
-harness names this skill's own base directory when it loads it — `Base
+The dispatcher ships with the plugin; this repository holds no copy of it.
+Claude Code names this skill's base directory when it loads it — `Base
 directory for this skill: <plugin>/skills/workstatus` — and the dispatcher is
 `scripts/run` two directories above that. Write that absolute path wherever a
 block below says `<plugin>`.
+
+In Codex, use the loaded skill's path in the available-skills catalog instead;
+its `SKILL.md` is also two directories below the plugin root.
 
 If that line is not there — a harness that does not print it — do not guess a
 cache path. `$CLAUDE_PLUGIN_ROOT` and `$CURSOR_PLUGIN_ROOT` are worth trying
