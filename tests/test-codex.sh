@@ -16,8 +16,9 @@ fi
 
 work="$(mktemp -d)"
 trap 'rm -rf "$work"' EXIT
+export HOME="$work/home"
 export CODEX_HOME="$work/codex"
-mkdir -p "$CODEX_HOME"
+mkdir -p "$HOME" "$CODEX_HOME"
 
 out="$(codex plugin marketplace add "$ROOT" 2>&1)"; rc=$?
 assert_rc 'Codex adds the local marketplace' 0 "$rc"
@@ -31,6 +32,10 @@ installed="$(find "$CODEX_HOME/plugins" -path '*/skills/start/SKILL.md' -print -
 assert_eq 'the installed package contains the start skill' 0 "$([[ -n "$installed" ]] && echo 0 || echo 1)"
 if [[ -z "$installed" ]]; then summary; exit 1; fi
 plugin="${installed%/skills/start/SKILL.md}"
+for skill in init agent-memory start workstatus wrap consolidate; do
+  assert_eq "installed package contains $skill" 0 \
+    "$([[ -f "$plugin/skills/$skill/SKILL.md" ]] && echo 0 || echo 1)"
+done
 assert_eq 'installed package has a Codex manifest' 0 \
   "$([[ -f "$plugin/.codex-plugin/plugin.json" ]] && echo 0 || echo 1)"
 

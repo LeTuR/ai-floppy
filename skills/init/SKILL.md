@@ -51,8 +51,8 @@ ordering to get right. The copy had been wrong once before it was removed
 In Codex, use the loaded `init` skill's path in the available-skills
 catalog; its `SKILL.md` is two directories below the plugin root.
 
-If the base directory is genuinely not stated — a harness that does not print
-it — do not guess a cache path: say so and stop. `$CLAUDE_PLUGIN_ROOT` and
+If neither the base directory nor the catalog path is available, do not
+guess a cache path: say so and stop. `$CLAUDE_PLUGIN_ROOT` and
 `$CURSOR_PLUGIN_ROOT` are worth trying first, and a checkout the human can
 name is worth asking for; both beat a search whose failure mode is running the
 wrong copy of the plugin.

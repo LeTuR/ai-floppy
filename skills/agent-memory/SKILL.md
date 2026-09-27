@@ -16,7 +16,8 @@ below calls that directory "the memory directory" rather than naming it,
 because the name is the consumer's choice, not this plugin's.
 
 The few commands below call floppy's dispatcher, which ships with the plugin
-and has no copy in this repository. Claude Code names this skill's base directory when it loads it — `Base directory for this skill:
+and has no copy in this repository. Claude Code names this skill's base directory when it loads it —
+`Base directory for this skill:
 <plugin>/skills/agent-memory` — and the dispatcher is `scripts/run` two
 directories above that. Write that absolute path wherever a command says
 `<plugin>`.
@@ -24,7 +25,7 @@ directories above that. Write that absolute path wherever a command says
 In Codex, use the loaded skill's path in the available-skills catalog instead;
 its `SKILL.md` is also two directories below the plugin root.
 
-If that line is not there — a harness that does not print it — do not guess a
+If neither the base directory nor the catalog path is available, do not guess a
 cache path. `$CLAUDE_PLUGIN_ROOT` and `$CURSOR_PLUGIN_ROOT` are worth trying
 first, and a checkout the human can name is worth asking for; a guess whose
 failure mode is running the wrong copy of the plugin is worse than stopping.

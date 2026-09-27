@@ -25,7 +25,7 @@ claude plugin marketplace add spscream/ai-floppy
 claude plugin install floppy@floppy
 ```
 
-Cursor, a local checkout, and what to do when an update copies nothing:
+Cursor, Codex, a local checkout, and what to do when an update copies nothing:
 [Install and init](docs/guide/install.md).
 
 For Codex CLI, run `codex plugin marketplace add spscream/ai-floppy`, then
